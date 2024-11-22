@@ -7,7 +7,7 @@
 # multiple subchart instances of the same subchart using the "alias" key in the
 # dependency definition to use separate single-DB instances for each. Maybe this is
 # desirable for isolation anyway? It's simpler to set up, if nothing else.
-postgresql-hydra:
+pghydra:
   enabled: true
   auth:
     # matches a static value in the deployment template
@@ -20,7 +20,7 @@ postgresql-hydra:
     ports:
       postgresql: "5432"
 
-postgresql-bss:
+pgbss:
   enabled: true
   auth:
     # matches a static value in the deployment template
@@ -35,7 +35,7 @@ postgresql-bss:
     ports:
       postgresql: "5432"
 
-postgresql-smd:
+pgsmd:
   enabled: true
   auth:
     # matches a static value in the deployment template

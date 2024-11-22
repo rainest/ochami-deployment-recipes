@@ -30,15 +30,15 @@ spec:
               port: {{ .Values.smd.deployment.containerPort }}
           env:
             - name: SMD_DBHOST
-              value: {{ .Release.Name }}-postgresql-smd.{{ .Release.Namespace }}.svc.cluster.local
+              value: {{ .Release.Name }}-pgsmd.{{ .Release.Namespace }}.svc.cluster.local
             - name: SMD_DBPORT
-              value: "{{ .Values.postgres-smd.service.port }}"
+              value: "{{ .Values.pgsmd.service.port }}"
             - name: SMD_DBUSER
               value: smd-user
             - name: SMD_DBPASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-postgresql-smd
+                  name: {{ .Release.Name }}-pgsmd
                   key: password
             - name: SMD_DBNAME
               value: {{ .Values.smd.dbname }}
