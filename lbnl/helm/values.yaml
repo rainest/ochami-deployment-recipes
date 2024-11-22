@@ -206,10 +206,10 @@ lighttpd:
   deployment:
     replicaCount: 1
     image:
-      repository: ghcr.io/openchami
+      repository: jitesoft
       name: lighttpd
       pullPolicy: IfNotPresent
-      tag: 0.1
+      tag: latest
     containerPort: 8080
 
   pvc_name: lighttpd
