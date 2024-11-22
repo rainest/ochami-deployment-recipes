@@ -32,7 +32,7 @@ spec:
             - name: SMD_DBHOST
               value: {{ .Release.Name }}-postgresql-smd.{{ .Release.Namespace }}.svc.cluster.local
             - name: SMD_DBPORT
-              value: "{{ .Values.postgres.deployment.containerPort }}"
+              value: "{{ .Values.postgres-smd.service.port }}"
             - name: SMD_DBUSER
               value: smd-user
             - name: SMD_DBPASS

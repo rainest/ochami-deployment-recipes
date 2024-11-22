@@ -38,7 +38,7 @@ spec:
             - name: BSS_DBNAME
               value: {{ .Values.bss.dbname }}
             - name: BSS_DBPORT
-              value: "{{ .Values.postgres.service.port }}"
+              value: "{{ .Values.postgres-bss.service.port }}"
             - name: BSS_DBUSER
               value: bss-user
             - name: BSS_DBPASS
