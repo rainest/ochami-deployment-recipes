@@ -201,22 +201,3 @@ swiss_army_knife:
       name: swiss-army-knife
       pullPolicy: IfNotPresent
       tag: latest
-
-lighttpd:
-  deployment:
-    replicaCount: 1
-    image:
-      repository: jitesoft
-      name: lighttpd
-      pullPolicy: IfNotPresent
-      tag: latest
-    containerPort: 8080
-
-  pvc_name: lighttpd
-  mount_path: /var/www/html
-
-  service:
-    type: ClusterIP
-    port: 80
-    annotations:
-      cloud.google.com/backend-config: '{"default": "lighttpd-backendconfig"}'
