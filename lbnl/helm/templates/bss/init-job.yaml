@@ -22,7 +22,7 @@ spec:
             - name: BSS_DBNAME
               value: {{ .Values.bss.dbname }}
             - name: BSS_DBPORT
-              value: "{{ .Values.pgbss.service.port }}"
+              value: "{{ .Values.pgbss.service.ports.postgresql }}"
             - name: BSS_DBUSER
               value: bss-user
             - name: BSS_DBPASS

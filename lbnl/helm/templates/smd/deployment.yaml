@@ -32,7 +32,7 @@ spec:
             - name: SMD_DBHOST
               value: {{ .Release.Name }}-pgsmd.{{ .Release.Namespace }}.svc.cluster.local
             - name: SMD_DBPORT
-              value: "{{ .Values.pgsmd.service.port }}"
+              value: "{{ .Values.pgsmd.service.ports.postgresql }}"
             - name: SMD_DBUSER
               value: smd-user
             - name: SMD_DBPASS
