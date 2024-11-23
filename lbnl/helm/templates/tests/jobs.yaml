@@ -31,4 +31,4 @@ spec:
       command:
         - curl
         - --fail
-        - "http://bss.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.bss.service.port }}/boot/v1/hosts "
+        - "http://bss.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.bss.service.port }}/boot/v1/hosts"
