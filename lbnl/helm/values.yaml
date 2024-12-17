@@ -55,11 +55,10 @@ coredhcp:
   deployment:
     replicaCount: 1
     image:
-      repository: rainest
-      #repository: ghcr.io/openchami
-      name: coresmd
+      repository: ghcr.io/openchami
+      name: coredhcp
       pullPolicy: IfNotPresent
-      tag: v0.0.5
+      tag: v0.0.6
 
   service:
     dhcp:
