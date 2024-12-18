@@ -58,7 +58,7 @@ coredhcp:
       repository: ghcr.io/openchami
       name: coredhcp
       pullPolicy: IfNotPresent
-      tag: v0.0.6
+      tag: v0.2.1
 
   service:
     dhcp:

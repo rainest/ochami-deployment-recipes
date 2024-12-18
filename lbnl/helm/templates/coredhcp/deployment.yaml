@@ -52,7 +52,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   # TODO this would probably be better as a helper, probably with a constructed dict that
-  # we toYaml. templating raw yaml strings feels like an icky recipe for failure
+  # we toYaml. templating raw yaml strings feels like an icky recipe for failure. that said,
+  # the configmap approach is undesirable in general, since changes to it won't natively trigger
+  # a Deployment rollout. IIRC we can do some hash hackery to force this, but it'd be nicer
+  # to have envvar equivalents
   config.yaml: |
     server4:
       listen:
@@ -69,12 +72,12 @@ data:
         # Args: ochami_base_url boot_script_base_url ca_cert_path cache_update_interval long_lease_time
         # TODO SMD cert is a mystery here. we have no config for it and there's no indication in the deployment that we load one from anywhere
         # we apparently only provide an HTTP listen, so until we provide TLS the cert does nothing
-        - coresmd: http://smd:{{ .Values.smd.service.port }} http://bss:{{ .Values.bss.service.port }} /fakeroot.pem 30s 1h
+        - coresmd: http://smd:{{ .Values.smd.service.port }} http://bss:{{ .Values.bss.service.port }} "" 30s 1h
         #
         # Optionally include the file plugin here if it matters which IPs get assigned to which
         # MACs. Otherwise, unknown MACs get passed to the bootloop "catch-all" plugin below.
         #
         # TODO this presumably comes from a bring your own configmap
         #- file /etc/coredhcp/hostsfile
-        # Args: storage_path short_lease_time ip_pool_start ip_pool_end 
-        - bootloop: /leases/coredhcp.db {{ .Values.coredhcp.config.unrecognized_range.duration }} {{ .Values.coredhcp.config.unrecognized_range.start }} {{ .Values.coredhcp.config.unrecognized_range.end }}
+        # Args: storage_path ipxe_script_path short_lease_time ip_pool_start ip_pool_end
+        - bootloop: /leases/coredhcp.db defaul {{ .Values.coredhcp.config.unrecognized_range.duration }} {{ .Values.coredhcp.config.unrecognized_range.start }} {{ .Values.coredhcp.config.unrecognized_range.end }}
